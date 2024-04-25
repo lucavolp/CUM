@@ -7,14 +7,16 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-image: url('logoSfondo.jpg');
+            background-size: cover;
+            backdrop-filter: blur(8px);
         }
         .login-form {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 30px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
