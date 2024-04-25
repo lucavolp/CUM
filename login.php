@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 
 // Connessione al database (sostituisci con i tuoi dati)
@@ -27,6 +28,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Le credenziali sono corrette, l'utente è autenticato
+    $_SESSION['username']=$username;
     echo json_encode(array("message" => "Login effettuato con successo"));
 } else {
     // Credenziali non valide
