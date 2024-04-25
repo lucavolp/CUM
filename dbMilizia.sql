@@ -28,8 +28,16 @@ CREATE TABLE Utente(
 -- inserire FK per id_ruolo ed id_grado
 
 CREATE TABLE Servizio(
-    nome VARCHAR() PRIMARY KEY,
-    grado VARCHAR(50) NOT NULL,
-    data_graduazione DATE,
-    descrizione VARCHAR(200)
+    nome TEXT PRIMARY KEY,
+    min_persone INTEGER,
+    ore_durata INTEGER,
+    luogo TEXT,
+    gettone INTEGER NOT NULL
+);
+
+CREATE TABLE Comunicazione(
+    cod INTEGER PRIMARY KEY AUTO_INCREMENT,
+    oggetto VARCHAR(40),
+    contenuto VARCHAR(10000),
+    destinatari VARCHAR(1000)
 );
