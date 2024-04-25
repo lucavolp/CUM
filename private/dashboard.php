@@ -25,8 +25,13 @@ $logged_in_username = $_SESSION['username'];
 
 // Query per ottenere l'elenco delle comunicazioni
 $sql = "SELECT * FROM Comunicazione";
-$result = $conn->query($sql);
-
+$comun = $conn->query($sql);
+// Query per ottenere l'elenco dei servizi
+$sql = "SELECT * FROM Servizio";
+$serv = $conn->query($sql);
+// Query per ottenere l'elenco delle assenze
+$sql = "SELECT * FROM Assenza";
+$assen = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -62,7 +67,17 @@ $result = $conn->query($sql);
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Servizi</h4>
-                    <!-- Add your content for Servizi here -->
+                    <ul class="list-group">
+                        <?php
+                            if ($serv->num_rows > 0) {
+                                while ($row = $serv->fetch_assoc()) {
+                                    echo '<li class="list-group-item"><a href="dett_ser.php?id=' . $row['nome'] . '">' . $row['nome'] . '</a></li>';
+                                }
+                            } else {
+                                echo '<li class="list-group-item">Nessun servizio svolto</li>';
+                            }
+                        ?>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -74,8 +89,8 @@ $result = $conn->query($sql);
                     <h4 class="card-title">Elenco delle comunicazioni</h4>
                     <ul class="list-group">
                         <?php
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
+                            if ($comun->num_rows > 0) {
+                                while ($row = $comun->fetch_assoc()) {
                                     echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['cod'] . '">' . $row['oggetto'] . '</a></li>';
                                 }
                             } else {
@@ -92,7 +107,17 @@ $result = $conn->query($sql);
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Assenze</h4>
-                    <!-- Add your content for Assenze here -->
+                    <ul class="list-group">
+                        <?php
+                            if ($assen->num_rows > 0) {
+                                while ($row = $assen->fetch_assoc()) {
+                                    echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['cod'] . '">' . $row['oggetto'] . '</a></li>';
+                                }
+                            } else {
+                                echo '<li class="list-group-item">Nessuna assenza segnalata</li>';
+                            }
+                        ?>
+                    </ul>
                 </div>
             </div>
         </div>

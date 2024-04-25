@@ -41,3 +41,10 @@ CREATE TABLE Comunicazione(
     contenuto VARCHAR(10000),
     destinatari VARCHAR(1000)
 );
+
+CREATE TABLE Assenza(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    data DATE,
+    dettagli VARCHAR(200),
+);
+-- inserire FK per utente_username ed id_tipologia
