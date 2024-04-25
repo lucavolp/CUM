@@ -30,7 +30,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="login-form">
                 <h2 class="text-center mb-4">Login</h2>
-                <form action="login.php" method="post">
+                <form id="loginForm">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" class="form-control" required>
@@ -47,6 +47,33 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#loginForm').submit(function(event) {
+        event.preventDefault();
+        
+        var username = $('#username').val();
+        var password = $('#password').val();
+
+        $.ajax({
+            url: 'login.php',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ username: username, password: password }),
+            success: function(response) {
+                alert(response.message);
+                window.location.href = 'private/dashboard.php';
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = JSON.parse(xhr.responseText);
+                alert(errorMessage.message);
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>
