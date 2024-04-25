@@ -2,17 +2,17 @@
 header('Content-Type: application/json');
 
 // Connessione al database (sostituisci con i tuoi dati)
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "nome_database";
+$servername = "192.168.1.152";
+$dbusername = "username";
+$dbpassword = "password";
+$dbname = "5cvolpinari_milizia";
 
 // Prendi i valori inviati dalla richiesta POST
 $input = json_decode(file_get_contents('php://input'), true);
 $username = $input['username'];
 $password = $input['password'];
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
 // Verifica della connessione
 if ($conn->connect_error) {
@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 }
 
 // Query per selezionare l'utente dal database
-$sql = "SELECT * FROM utenti WHERE username = '$username' AND password = '$password'";
+$sql = "SELECT * FROM Utente WHERE usr = '$username' AND pwd = '$password'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
