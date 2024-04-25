@@ -23,6 +23,8 @@ if ($conn->connect_error) {
 // Prendi l'ID della comunicazione dalla query string
 $id_comunicazione = $_GET['id'];
 
+
+
 // Query per ottenere i dettagli della comunicazione
 $sql = "SELECT * FROM Comunicazione WHERE cod = $id_comunicazione";
 $result = $conn->query($sql);
@@ -48,7 +50,7 @@ if ($result->num_rows > 0) {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="#">Benvenuto, <?php echo $_SESSION['username']; ?></a>
+        <a class="navbar-brand" href="#">Benvenuto, <?php echo '<i>'.$_SESSION['username'].'</i>'; ?></a>
     </div>
 </nav>
 
@@ -65,6 +67,7 @@ if ($result->num_rows > 0) {
         </div>
     </div>
 </div>
+
 
 </body>
 </html>
