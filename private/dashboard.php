@@ -91,7 +91,9 @@ $assen = $conn->query($sql);
                         <?php
                             if ($comun->num_rows > 0) {
                                 while ($row = $comun->fetch_assoc()) {
-                                    echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['cod'] . '">' . $row['oggetto'] . '</a></li>';
+                                    echo '<li class="list-group-item">
+                                            <a href="dett_com.php?id='.$row['cod'].'">'.$row['oggetto'].'</a>
+                                        </li>';
                                 }
                             } else {
                                 echo '<li class="list-group-item">Nessuna comunicazione trovata.</li>';
