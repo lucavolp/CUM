@@ -11,7 +11,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('logoSfondo.jpg');
+            background-image: url('images/logoSfondo.jpg');
             background-size: cover;
             backdrop-filter: blur(8px);
         }
