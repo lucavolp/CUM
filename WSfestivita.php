@@ -1,9 +1,8 @@
 <?php
-// Database connection settings
 $servername = "192.168.1.152";
-$dbusername = "username"; // Replace with your MySQL username
-$dbpassword = "password"; // Replace with your MySQL password
-$database = "5cvolpinari_milizia"; // Replace with your MySQL database name
+$dbusername = "username";
+$dbpassword = "password";
+$database = "5cvolpinari_milizia";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
 
@@ -27,23 +26,13 @@ $mesi = [
 ];
 
 
-
-// Fetch data from database grouped by month
 $sql = "SELECT * FROM festivita";
 $result = $conn->query($sql);
-
-// Initialize array to hold grouped data
 $grouped_data = array();
 
-// Loop through each row in the result set
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Extract month from date
         $month = $row["num_mese"];
-        //$date = date_create($row['data']);
-        //$month = date_format($date, 'm');
-
-        // Add data to the corresponding month in the grouped array
         $grouped_data[$month][] = array(
             'mese' => $mesi[intval($month)],
             'data' => $row['data'],
@@ -52,9 +41,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Close database connection
 $conn->close();
 
-// Return grouped data as JSON
 header('Content-Type: application/json');
 echo json_encode($grouped_data);

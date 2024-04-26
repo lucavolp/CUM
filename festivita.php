@@ -2,18 +2,18 @@
 
 
     $mesi = [
-        1=> "gennaio",
-        2=> "febbraio",
-        3=> "marzo",
-        4=> "aprile",
-        5=> "maggio",
-        6=> "giugno",
-        7=> "luglio",
-        8=> "agosto",
-        9=> "settembre",
-        10=> "ottobre",
-        11=> "novembre",
-        12=> "dicembre"
+        "1"=> "gennaio",
+        "2"=> "febbraio",
+        "3"=> "marzo",
+        "4"=> "aprile",
+        "5"=> "maggio",
+        "6"=> "giugno",
+        "7"=> "luglio",
+        "8"=> "agosto",
+        "9"=> "settembre",
+        "10"=> "ottobre",
+        "11"=> "novembre",
+        "12"=> "dicembre"
     ];
 ?>
 
@@ -49,17 +49,17 @@
             if (isset($festivity_data[$numero_mese])) {
                 foreach ($festivity_data[$numero_mese] as $festivity) {
                     echo '<tr>';
-                    
                     echo '<td>' . $nome_mese . '</td>';
-                    echo '<td>' . $festivity['data'] . '</td>';
-                    echo '<td>' . $festivity['nome'] . '</td>';
+                    echo '<td>' . $festivity["data"] . '</td>';
+                    echo '<td>' . $festivity["nome"] . '</td>';
                     echo '</tr>';
                 }
             } else {
                 echo '<tr>';
                 
                 echo '<td>' . $nome_mese . '</td>';
-                echo '<td></td>';
+                //echo '<td>'.$numero_mese.'</td>';
+                echo '<td>' . $festivity_data["data"] . '</td>';
                 echo '<td></td>';
                 echo '</tr>';
             }
