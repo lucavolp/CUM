@@ -24,8 +24,11 @@ CREATE TABLE Utente(
     data_nascita DATE NOT NULL,
     PA BOOLEAN,
     cellulare VARCHAR(16) NOT NULL,
+    id_ruolo INTEGER,
+    id_grado INTEGER,
+    FOREIGN KEY (id_ruolo) REFERENCES Ruolo(id),
+    FOREIGN KEY (id_grado) REFERENCES Grado(id)
 );
--- inserire FK per id_ruolo ed id_grado
 
 CREATE TABLE Servizio(
     nome TEXT PRIMARY KEY,
@@ -42,9 +45,20 @@ CREATE TABLE Comunicazione(
     destinatari VARCHAR(1000)
 );
 
+CREATE TABLE Tipologia(
+    id INTEGER PRIMARY KEY,
+    tipo VARCHAR(40),
+    descrizione VARCHAR(250)
+);
+
 CREATE TABLE Assenza(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     data DATE,
     dettagli VARCHAR(200),
+    FOREIGN KEY (utente_usr) REFERENCES Utente(usr),
+    FOREIGN KEY (id_tipologia) REFERENCES Tipologia(id)
 );
--- inserire FK per utente_username ed id_tipologia
+
+
+
+INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `data_arruolo`, `data_nascita`, `PA`, `cellulare`, `id_ruolo`, `id_grado`) VALUES ('admin', 'admin', 'admin', 'admin', NULL, '2005-05-21', BIN('0'), '3669886162', NULL, NULL);
