@@ -72,7 +72,10 @@ $assen = $conn->query($sql);
                                 if ($serv->num_rows > 0) {
                                     $nRighe=0;
                                     while (($row = $serv->fetch_assoc())&&($nRighe<=5)) {
-                                        echo '<li class="list-group-item"><a href="dett_ser.php?id=' . $row['nome'] . '">' . $row['nome'] . '</a></li>';
+                                        $edId= str_replace(' ', '_', $row['nome']);
+                                        echo '<li class="list-group-item">
+                                                <a href="dett_ser.php?id=' . $edId . '">' . $row['nome'] . '</a>
+                                            </li>';
                                         $nRighe++;
                                     }
                                 } else {

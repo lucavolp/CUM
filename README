@@ -5,7 +5,7 @@ HOME PAGE:
         Cerimoniale Militare (scannerizzazione)
         Regolamenti Interni (documento PDF)
 
-Pagina Raccolta Fotografica Suddivise per Antiche e Moderne (tag db)
+Pagina Raccolta Fotografica Suddivise per Antiche e Moderne (colonna db "antica" boolean per separarle)
 
 i nomi dei servizi, che sono PK, creano dei problemi alla query di lettura dei dati all'interno di dett_ser.php a riga 28
 
