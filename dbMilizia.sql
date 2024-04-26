@@ -59,6 +59,12 @@ CREATE TABLE Assenza(
     FOREIGN KEY (id_tipologia) REFERENCES Tipologia(id)
 );
 
+CREATE TABLE Festivita(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(35),
+    descrizione VARCHAR(500),
+    num_mese INTEGER NULL
+);
 
-
-INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `data_arruolo`, `data_nascita`, `PA`, `cellulare`, `id_ruolo`, `id_grado`) VALUES ('admin', 'admin', 'admin', 'admin', NULL, '2005-05-21', BIN('0'), '3669886162', NULL, NULL);
+INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `data_arruolo`, `data_nascita`, `PA`, `cellulare`, `id_ruolo`, `id_grado`) VALUES ('admin', 'admin', 'admin', 'admin', NULL, '2005-05-21', 0, '3669886162', NULL, NULL);
+INSERT INTO `festivita` (`id`, `nome`, `data`, `descrizione`) VALUES (NULL, "Sant'Agata", '2024-02-05', 'Compatrona'), (NULL, "Festa dell'arengo e Milizie", '2024-03-25', "Festa dell'arengo e delle Milizie");
