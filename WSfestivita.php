@@ -1,8 +1,14 @@
 <?php
-$servername = "192.168.1.152";
-$dbusername = "username";
-$dbpassword = "password";
+
+$servername = "10.25.0.14";
+$dbusername = "5cvolpinari";
+$dbpassword = "5cvolpinari";
 $database = "5cvolpinari_milizia";
+
+// $servername = "192.168.1.152";
+// $dbusername = "username";
+// $dbpassword = "password";
+// $database = "5cvolpinari_milizia";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
 
@@ -26,7 +32,7 @@ $mesi = [
 ];
 
 
-$sql = "SELECT * FROM festivita";
+$sql = "SELECT * FROM Festivita";
 $result = $conn->query($sql);
 $grouped_data = array();
 
@@ -44,4 +50,5 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 header('Content-Type: application/json');
-echo json_encode($grouped_data);
+$json_formato = json_encode($grouped_data);
+echo $json_formato;

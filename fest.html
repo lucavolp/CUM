@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festività Nazionali</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Festività Sammarinesi</h2>
+            <table id="festivity-table" class="table">
+                <thead>
+                    <tr>
+                        <th>Mese</th>
+                        <th>Data</th>
+                        <th>Ricorrenza</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Effettua la chiamata AJAX per ottenere i dati delle festività e aggiorna la tabella
+        $.ajax({
+            url: 'festivita.php', // Nome del file PHP che restituisce i dati delle festività
+            type: 'GET',
+            success: function(data) {
+                // Aggiorna il contenuto della tabella con i dati delle festività
+                $('#festivity-table tbody').html(data);
+            },
+            error: function(xhr, status, error) {
+                // Se si è verificato un errore, visualizza un messaggio di errore nella console
+                console.error('Errore durante la richiesta AJAX:', status, error);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

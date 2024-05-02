@@ -49,9 +49,7 @@
 <body>
 
 <div class="container">
-    <h1>Welcome to Our Website!</h1>
-    <h2>Here's a Preview of Our Document</h2>
-    <div class="preview"></div>
+    <h1>Scarica File</h1>
     <a class="download-button" href="cerimoniale.pdf" download>Download Now</a>
 </div>
 
