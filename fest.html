@@ -30,16 +30,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Effettua la chiamata AJAX per ottenere i dati delle festività e aggiorna la tabella
         $.ajax({
-            url: 'festivita.php', // Nome del file PHP che restituisce i dati delle festività
+            url: 'WSfestivita.php', 
             type: 'GET',
             success: function(data) {
-                // Aggiorna il contenuto della tabella con i dati delle festività
                 $('#festivity-table tbody').html(data);
             },
             error: function(xhr, status, error) {
-                // Se si è verificato un errore, visualizza un messaggio di errore nella console
                 console.error('Errore durante la richiesta AJAX:', status, error);
             }
         });
