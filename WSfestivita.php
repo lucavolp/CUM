@@ -39,7 +39,7 @@ $grouped_data = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $month = $row["num_mese"];
-        $grouped_data[$month][] = array(
+        $grouped_data[$month] = array(
             'mese' => $mesi[intval($month)],
             'data' => $row['data'],
             'nome' => $row['nome']

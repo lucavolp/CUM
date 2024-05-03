@@ -62,6 +62,7 @@ $assen = $conn->query($sql);
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="#">Benvenuto, <?php echo '<i>'.$logged_in_username.'</i>'; ?></a>
+            <a class="btn btn-danger" href="logout.php">Logout</a>
         </div>
     </nav>
     <br><br>

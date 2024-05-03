@@ -51,6 +51,7 @@ if ($result->num_rows > 0) {
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="#">Benvenuto, <?php echo '<i>'.$_SESSION['username'].'</i>'; ?></a>
+        <a class="btn btn-danger" href="logout.php">Logout</a>
     </div>
 </nav>
 

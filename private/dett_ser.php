@@ -8,9 +8,9 @@
     }
 
     // Connessione al database (sostituisci con i tuoi dati)
-    $servername = "192.168.1.152";
-    $dbusername = "username";
-    $dbpassword = "password";
+    $servername = "10.25.0.14";
+    $dbusername = "5cvolpinari";
+    $dbpassword = "5cvolpinari";
     $dbname = "5cvolpinari_milizia";
 
     $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
@@ -22,9 +22,9 @@
     $sql = "SELECT * FROM Servizio WHERE nome LIKE '%$id_servizio'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        $comunicazione = $result->fetch_assoc();
+        $ser = $result->fetch_assoc();
     } else {
-        echo "Comunicazione non trovata.";
+        echo "Servizio non trovato.";
         exit();
     }
 ?>
@@ -42,6 +42,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="dashboard.php">Benvenuto, <?php echo $_SESSION['username']; ?></a>
+        <a class="btn btn-danger" href="logout.php">Logout</a>
     </div>
 </nav>
 
@@ -51,8 +52,15 @@
             <h2>Dettagli del Servizio</h2>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $comunicazione['oggetto']; ?></h5>
-                    <p class="card-text"><?php echo $comunicazione['contenuto']; ?></p>
+                    <table class="table">
+                        <tbody>
+                            <h4>Nome servizio: <?php echo $ser['nome']; ?></h4>
+                            <h4>Gettone: <?php echo $ser['gettone']; ?> Euro</h4>
+                            <h4>Durata: <?php echo $ser['ore_durata']; ?> Ore</h4>
+                            <h4>Luogo: <?php echo $ser['luogo']; ?> </h4>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

@@ -14,11 +14,9 @@ $mesi = [
     12 => "dicembre"
 ];
 
-// Include il file WSfestivita.php e ottieni i dati delle festività
 include('WSfestivita.php');
 $festivity_data = json_decode($json_formato, true);
 
-// Prepara il contenuto HTML per le festività
 $html_content = '';
 foreach ($mesi as $numero_mese => $nome_mese) {
     $html_content .= '<tr>';
@@ -36,6 +34,4 @@ foreach ($mesi as $numero_mese => $nome_mese) {
     }
 }
 
-// Restituisci il contenuto HTML
 echo $html_content;
-?>

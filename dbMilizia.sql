@@ -31,12 +31,13 @@
     );
 
     CREATE TABLE Servizio(
-        nome TEXT PRIMARY KEY,
+        nome VARCHAR(30) PRIMARY KEY,
         min_persone INTEGER,
         ore_durata INTEGER,
-        luogo TEXT,
+        luogo VARCHAR(50),
         gettone INTEGER NOT NULL
     );
+    
 
     CREATE TABLE Comunicazione(
         cod INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -55,6 +56,8 @@
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         data DATE,
         dettagli VARCHAR(200),
+        utente_usr VARCHAR(25),
+        id_tipologia INTEGER,
         FOREIGN KEY (utente_usr) REFERENCES Utente(usr),
         FOREIGN KEY (id_tipologia) REFERENCES Tipologia(id)
     );
@@ -74,8 +77,11 @@
     BEGIN
         SET NEW.num_mesi = MONTH(NEW.data);
     END;
+    // 
     DELIMITER ;
     ;
 
     INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `data_arruolo`, `data_nascita`, `PA`, `cellulare`, `id_ruolo`, `id_grado`) VALUES ('admin', 'admin', 'admin', 'admin', NULL, '2005-05-21', 0, '3669886162', NULL, NULL);
     INSERT INTO `Festivita` (`id`, `nome`, `data`, `descrizione`) VALUES (NULL, "Sant'Agata", '2024-02-05', 'Compatrona'), (NULL, "Festa dell'arengo e Milizie", '2024-03-25', "Festa dell'arengo e delle Milizie");
+    INSERT INTO `Servizio` (`nome`,`min_persone`, `ore_durata`, `luogo`, `gettone`) VALUES ('Manovra',2,1,'Citta',15);
+
