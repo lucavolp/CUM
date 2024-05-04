@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-// Verifica se l'utente è autenticato
 if (!isset($_SESSION['username'])) {
-    header("Location: login.html"); // Reindirizza alla pagina di login se l'utente non è autenticato
+    header("Location: login.html");
     exit();
 }
 
-// Connessione al database (sostituisci con i tuoi dati)
 $servername = "192.168.1.152";
 $dbusername = "username";
 $dbpassword = "password";
@@ -15,21 +13,16 @@ $dbname = "5cvolpinari_milizia";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-// Verifica della connessione
 if ($conn->connect_error) {
     die("Connessione al database fallita: " . $conn->connect_error);
 }
 
-// Prendi l'ID della comunicazione dalla query string
 $id_comunicazione = $_GET['id'];
 
 
-
-// Query per ottenere i dettagli della comunicazione
 $sql = "SELECT * FROM Comunicazione WHERE cod = $id_comunicazione";
 $result = $conn->query($sql);
 
-// Verifica se la comunicazione esiste
 if ($result->num_rows > 0) {
     $comunicazione = $result->fetch_assoc();
 } else {
@@ -74,6 +67,5 @@ if ($result->num_rows > 0) {
 </html>
 
 <?php
-// Chiudi la connessione al database
 $conn->close();
 ?>

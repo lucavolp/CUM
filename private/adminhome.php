@@ -68,20 +68,23 @@ $assen = $conn->query($sql);
                     <div class="card-body">
                         <h4 class="card-title">Servizi</h4>
                         <ul class="list-group">
-                            <?php
-                                if ($serv->num_rows > 0) {
-                                    $nRighe=0;
-                                    while (($row = $serv->fetch_assoc())&&($nRighe<=5)) {
-                                        $edId= str_replace(' ', '_', $row['nome']);
-                                        echo '<li class="list-group-item">
-                                                <a href="dett_ser.php?id=' . $edId . '">' . $row['nome'] . '</a>
-                                            </li>';
-                                        $nRighe++;
+                            <li class="list-group-item">
+                            <a href="addServizio.php">Aggiungi Servizio</a>
+                                <?php
+                                    if ($serv->num_rows > 0) {
+                                        $nRighe=0;
+                                        while (($row = $serv->fetch_assoc())&&($nRighe<=5)) {
+                                            $edId= str_replace(' ', '_', $row['nome']);
+                                            //echo '<li class="list-group-item">
+                                            echo '
+                                                    <a href="dett_ser.php?id=' . $edId . '">' . $row['nome'] . '</a>
+                                                </li>';
+                                            $nRighe++;
+                                        }
+                                    } else {
+                                        echo '<li class="list-group-item">Nessun servizio svolto</li>';
                                     }
-                                } else {
-                                    echo '<li class="list-group-item">Nessun servizio svolto</li>';
-                                }
-                            ?>
+                                ?>
                         </ul>
                     </div>
                 </div>

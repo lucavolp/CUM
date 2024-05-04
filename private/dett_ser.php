@@ -1,13 +1,11 @@
 <?php
     session_start();
 
-    // Verifica se l'utente è autenticato
     if (!isset($_SESSION['username'])) {
-        header("Location: login.html"); // Reindirizza alla pagina di login se l'utente non è autenticato
+        header("Location: login.html");
         exit();
     }
 
-    // Connessione al database (sostituisci con i tuoi dati)
     $servername = "10.25.0.14";
     $dbusername = "5cvolpinari";
     $dbpassword = "5cvolpinari";
