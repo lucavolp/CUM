@@ -62,15 +62,16 @@
 
 
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         $.ajax({
             url: 'WSfestivita.php', 
             type: 'GET',
 
             success: function(data) {
-                data.forEach(function(item) {
-                    var p = $('<tr>').text('Nome: ' + item.nome + ', Cognome: ' + item.data);
+
+                for(function(item) {
+                    var p = $('<tr>').text('Nome: ' + item[nome] + ', Cognome: ' + item[data]);
                     result.append(p); // Mostra i risultati
                 });
                 $('#festivity-table tbody').html(data.nome);
@@ -82,7 +83,37 @@
         });
     });
 
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'WSfestivita.php', 
+            type: 'GET',
+            dataType: 'JSON',
+
+            success: function(data) {
+                
+                    for(i=1; i<=12; i++){
+                        //console.log(data[2].mese);
+                        if(!(data[i]===undefined)){
+                            var row = $('<tr>');
+                            row.append($('<td>').text(data[i].mese));
+                            row.append($('<td>').text(data[i].data));
+                            row.append($('<td>').text(data[i].nome));
+                            row.append($('</tr>'));
+    
+                            $('#festivity-table tbody').append(row);
+                        }
+                        };
+            },
+            error: function(xhr, status, error) {
+                console.error('Errore durante la richiesta AJAX:', status, error);
+            }   
+        });
+    });
 </script>
+
 
 </body>
 </html>
