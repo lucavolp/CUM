@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     header("Location: ../accesso2.html");
     exit();
 }
-
+/*
 $servername = "10.25.0.14";
 $dbusername = "5cvolpinari";
 $dbpassword = "5cvolpinari";
@@ -23,6 +23,9 @@ $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 if ($conn->connect_error) {
     die("Connessione al database fallita: " . $conn->connect_error);
 }
+*/
+
+include("../assets/db/dbconn.php");
 
 $logged_in_username = $_SESSION['username'];
 

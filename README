@@ -1,15 +1,7 @@
-HOME PAGE:
-
-    Card con:
-        Festività nazionali (quali sono)
-        Cerimoniale Militare (scannerizzazione)
-        Regolamenti Interni (documento PDF)
+dashbord con i dati trasmessi su WebService e non sql diretto
 
 Pagina Raccolta Fotografica Suddivise per Antiche e Moderne (colonna db "antica" boolean per separarle)
 
 i nomi dei servizi, che sono PK, creano dei problemi alla query di lettura dei dati all'interno di dett_ser.php a riga 28
 
 In dashboard.php indentare la visualizzazione delle righe all'interno delle card
-
-
-In festività il json sembra essere strutturato bene, ma non riesce ad accedere ai valori
