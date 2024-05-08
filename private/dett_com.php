@@ -6,16 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-$servername = "192.168.1.152";
-$dbusername = "username";
-$dbpassword = "password";
-$dbname = "5cvolpinari_milizia";
-
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-
-if ($conn->connect_error) {
-    die("Connessione al database fallita: " . $conn->connect_error);
-}
+include("../assets/db/dbconn.php");
 
 $id_comunicazione = $_GET['id'];
 

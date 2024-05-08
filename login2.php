@@ -4,23 +4,9 @@ header('Content-Type: application/json');
 
 // Funzione per controllare le credenziali dell'utente nel database
 function authenticateUser($username, $password) {
-    //$servername = "10.25.0.14"; // Modifica con il tuo indirizzo del server
-    //$dbusername = "5cvolpinari"; // Modifica con il tuo nome utente del database
-    //$dbpassword = "5cvolpinari"; // Modifica con la tua password del database
-    //$dbname = "5cvolpinari_milizia"; // Modifica con il nome del tuo database
 
 
-    $servername = "192.168.1.152";
-    $dbusername = "username";
-    $dbpassword = "password";
-    $dbname = "5cvolpinari_milizia";
-    
-    // Connessione al database
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-
-    if ($conn->connect_error) {
-        return array("success" => false, "message" => "Errore di connessione al database: " . $conn->connect_error);
-    }
+    include("assets/db/dbconn.php");
 
     // Query per verificare le credenziali dell'utente
     $sql = "SELECT * FROM Utente WHERE usr = '$username' AND pwd = '$password'";
