@@ -53,13 +53,14 @@ $assen = $conn->query($sql);
                         <h4 class="card-title">Servizi</h4>
                         <ul class="list-group">
                             <li class="list-group-item">
-                            <a href="addServizio.php">Aggiungi Servizio</a>
+                            <a href="addServizio.php">Aggiungi Servizio</a></li>
+                            
                                 <?php
                                     if ($serv->num_rows > 0) {
                                         $nRighe=0;
                                         while (($row = $serv->fetch_assoc())&&($nRighe<=5)) {
                                             $edId= str_replace(' ', '_', $row['nome']);
-                                            //echo '<li class="list-group-item">
+                                            echo '<li class="list-group-item">';
                                             echo '
                                                     <a href="dett_ser.php?id=' . $edId . '">' . $row['nome'] . '</a>
                                                 </li>';

@@ -5,3 +5,5 @@ Pagina Raccolta Fotografica Suddivise per Antiche e Moderne (colonna db "antica"
 i nomi dei servizi, che sono PK, creano dei problemi alla query di lettura dei dati all'interno di dett_ser.php a riga 28
 
 In dashboard.php indentare la visualizzazione delle righe all'interno delle card
+
+addAssenza da fare praticamente tutto !!!!!

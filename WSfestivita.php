@@ -20,37 +20,6 @@ $mesi = [
 $sql = "SELECT * FROM Festivita";
 $result = $conn->query($sql);
 $grouped_data = array();
-// $k=0;
-// if ($result->num_rows > 0) {
-//     while ($row = $result->fetch_assoc()) {
-//         if($k===0){
-//             $month = $row["num_mese"];
-//             $grouped_data[$month]=null;
-//             $k++;
-//         }
-//         if(is_null($grouped_data[$month])){
-//             // echo "<script>console.log('ciao');</script>";
-//             $month = $row["num_mese"];
-//             $lastM = $row["num_mese"];
-//             $grouped_data[$month] = array(
-//                 'mese' => $mesi[intval($month)],
-//                 'data' => $row['data'],
-//                 'nome' => $row['nome'],
-//                 'id' => $row['id']
-//             );
-//         }else{
-//             $month++;
-//             $grouped_data[$month] = array(
-//             'mese' => $mesi[intval($month-1)],
-//             'data' => $row['data'],
-//             'nome' => $row['nome'],
-//             'id' => $row['id']
-//             );
-//         }
-        
-//     }
-    
-// }
 
 $k = 0;
 if ($result->num_rows > 0) {
@@ -60,6 +29,7 @@ if ($result->num_rows > 0) {
             $grouped_data[$month] = null;
             $k++;
         }
+        
         if (is_null($grouped_data[$month])) {
             $month = $row["num_mese"];
             $lastM = $row["num_mese"];
