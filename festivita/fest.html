@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festività Nazionali</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="text-right">
+        <a class="btn btn-danger text-right" href="private/logout.php">Logout</a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Festività Sammarinesi</h2>
+            <table id="festivity-table" class="table">
+                <thead>
+                    <tr>
+                        <th>mese</th>
+                        <th>data</th>
+                        <th>nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<!-- 
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'WSfestivita.php', 
+            type: 'GET',
+
+            success: function(data) {
+                var textToInsert = '';
+                $.each(data, function(row, rowdata) {
+                   textToInsert += '<tr>';
+                   $.each(rowdata, function (ele, eledata){
+                      textToInsert  += '<td>' + eledata + '</td>';
+                   });
+                   textToInsert += '</tr>';
+                });
+                $("#festivity_table").append(textToInsert);
+            },
+            error: function(xhr, status, error) {
+                console.error('Errore durante la richiesta AJAX:', status, error);
+            }   
+        });
+    });
+//NON FUNZIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</script>
+ -->
+
+
+
+<!-- <script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'WSfestivita.php', 
+            type: 'GET',
+
+            success: function(data) {
+
+                for(function(item) {
+                    var p = $('<tr>').text('Nome: ' + item[nome] + ', Cognome: ' + item[data]);
+                    result.append(p); // Mostra i risultati
+                });
+                $('#festivity-table tbody').html(data.nome);
+                //$('#festivity-table tbody').html("ciao");
+            },
+            error: function(xhr, status, error) {
+                console.error('Errore durante la richiesta AJAX:', status, error);
+            }   
+        });
+    });
+
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'WSfestivita.php', 
+            type: 'GET',
+            dataType: 'JSON',
+
+            success: function(data) {
+                
+                    for(i=1; i<=12; i++){
+                        //console.log(data[2].mese);
+                        if(!(data[i]===undefined)){
+                            var row = $('<tr>');
+                            row.append($('<td>').text(data[i].mese));
+                            row.append($('<td>').text(data[i].data));
+                            row.append($('<td>').text(data[i].nome));
+                            row.append($('</tr>'));
+    
+                            $('#festivity-table tbody').append(row);
+                        }
+                        };
+            },
+            error: function(xhr, status, error) {
+                console.error('Errore durante la richiesta AJAX:', status, error);
+            }   
+        });
+    });
+</script>
+
+
+</body>
+</html>
