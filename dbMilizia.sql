@@ -85,7 +85,7 @@
     INSERT INTO `Festivita` (`id`, `nome`, `data`, `descrizione`) VALUES (NULL, "Sant'Agata", '2024-02-05', 'Compatrona'), (NULL, "Festa dell'arengo e Milizie", '2024-03-25', "Festa dell'arengo e delle Milizie"), (NULL, "Insediamento Reggenti", '2024-04-01', 'Insediamento nuovi capitani reggenti'), (NULL, "Insediamento Reggenti2", '2024-04-02', 'Insediamento nuovi capitani reggenti');
     INSERT INTO `Servizio` (`nome`,`min_persone`, `ore_durata`, `luogo`, `gettone`) VALUES ('Manovra',2,1,'Citta',15);
     -- ALTER TABLE Grado DROP COLUMN data_graduazione;
-    INSERT INTO `Grado` (`grado`, `descrizione`) VALUES ('Capitano','Comandante del Corpo'), ('Tenente','Tenente e responsabile del Comando'), ('Sotto-Tenente','Aiutante e/o sostituto del Tenente');
-    -- alter table Utente add mail varchar(64);
+    INSERT INTO `Grado` (`grado`, `descrizione`) VALUES ('Capitano','Comandante del Corpo'), ('Tenente','Ufficiale subalterno'), ('Sotto-Tenente','Ufficiale Subalterno'), ('Sergente Maggiore', 'Sottufficiale'), ('Caporal Maggiore', 'Graduato'), ('Caporale', 'Graduato'), ('Milite', 'Milite');
+    alter table Utente add mail varchar(64);
     -- UPDATE Utente SET pwd = '2yn.4fvaTgedM' WHERE usr = 'admin';
-
+    INSERT INTO `Ruolo` (`ruolo`, `descrizione`) VALUES ('admin', 'amministratore con accesso completo'), ('user', 'utente con accesso limitato');
