@@ -66,10 +66,11 @@ $(document).ready(function() {
             data: JSON.stringify({ username: username, password: password }),
             success: function(response) {
                 alert(response.message);
-                if(response.admin){
-                    window.location.href = '../private/adminhome.php'; 
-                }else if (response.success){
+                if (response.success) {
                     window.location.href = '../private/dashboard.php'; 
+                }
+                if(admin){
+                    window.location.href = '../private/adminhome.php'; 
                 }
             },
             error: function(xhr, status, error) {
