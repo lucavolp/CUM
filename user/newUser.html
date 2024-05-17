@@ -59,53 +59,77 @@
         <!-- secondo pannello che compare per completare con l'inserimento degli altri dati -->
         <div class="container" id="secondo" style="display: none;">
             <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="login-form" style="text-align: center;">
+                <div class="col-md-8 offset-md-2">
+                    <div class="login-form">
                         <h2 class="text-center mb-4">Completa registrazione</h2>
                         <form id="loginForm2">
-                            <div class="form-group">
-                                <label for="username">Nome*</label>
-                                <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="username">Nome*</label>
+                                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cognome">Cognome*</label>
+                                        <input type="text" name="cognome" id="cognome" class="form-control" placeholder="Cognome" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cognome">Cognome*</label>
-                                <input type="text" name="cognome" id="cognome" class="form-control" placeholder="Cognome" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="mail">Mail*</label>
+                                        <input type="text" name="mail" id="mail" class="form-control" placeholder="E-mail" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cellulare">Cellulare</label>
+                                        <input type="text" name="cellulare" id="cellulare" class="form-control" placeholder="cellulare">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="mail">Mail*</label>
-                                <input type="text" name="mail" id="mail" class="form-control" placeholder="E-mail" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dataN">Data di Nascita</label>
+                                        <input type="text" name="dataN" id="dataN" class="form-control datepicker" placeholder="Data di Nascita" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="grado">Grado</label>
+                                        <select class="form-control" id="grado" name="grado">
+                                            <option value="">Seleziona Grado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dataA">Data di Arruolo</label>
+                                        <input type="text" name="dataA" id="dataA" class="form-control datepicker" placeholder="Data di Arruolo" autocomplete="off">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cellulare">Cellulare</label>
-                                <input type="text" name="cellulare" id="cellulare" class="form-control" placeholder="cellulare">
-                            </div>
-                            <div class="form-group">
-                                <label for="dataN">Data di Nascita</label>
-                                <input type="text" name="dataN" id="dataN" class="form-control datepicker" placeholder="Data di Nascita" autocomplete="off" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="grado">Grado</label>
-                                <select class="form-control" id="grado" name="grado">
-                                    <option value="">Seleziona Grado</option>
-
-                                </select>
-                            </div>
-        
-                            <div class="form-group" style="text-align: left" >
+                            <div class="form-group" style="text-align: left">
                                 <input type="checkbox" id="pa" name="checkbox">
                                 <label class="form-check-label" for="pa">PA*</label>
                             </div>
+                            
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block">Completa registrazione</button>
                             </div>
                         </form>
-                        <div  style="text-align: left">
+                        <div style="text-align: left">
                             <a href="newUser.html">Indietro</a>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
 
         <!-- roba di javascript per bottoni e chiamate -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -143,6 +167,7 @@
                     var mail = $('#mail').val();
                     var cellulare = $('#cellulare').val();
                     var dataN = $('#dataN').val();
+                    var dataA = $('#dataA').val();
                     var grado = $('#grado').val();
                     var pa = $('#pa').val();
 
@@ -150,7 +175,7 @@
                         url: './register.php',
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify({ username: username, password: password , nome:nome, cognome:cognome, mail:mail, cellulare:cellulare, dataN:dataN, grado:grado, pa:pa}),
+                        data: JSON.stringify({ username: username, password: password , nome:nome, cognome:cognome, mail:mail, cellulare:cellulare, dataN:dataN, dataA:dataA, grado:grado, pa:pa}),
                         success: function(response) {
                             alert(response.message);
                             if (response.success) {

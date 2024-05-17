@@ -2,36 +2,24 @@
 session_start();
 header('Content-Type: application/json');
 
-function registerUser($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $grado, $pa) {
+function registerUser($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $dataA, $grado, $pa) {
 
 
     include("../assets/db/dbconn.php");
 
-    $crPsw=crypt($pass, PASSWORD_DEFAULT);
-    $sql = "SELECT * FROM Utente WHERE usr = '$usr' AND pwd = '$crPsw'";
+    $crPsw=crypt($pass, PASSWORD_DEFAULT);          //d'ora in poi la password viene utilizzata criptata
+    $sql = "SELECT * FROM Utente WHERE usr = '$usr'";
     $result = $conn->query($sql);
 
-
-    /*
-        funziona la verifica se esiste gia un utente con lo stesso username
-        - bisogna far la query d'inserimento
-    */
-
-
-
-
-
-
-
-
     if ($result->num_rows <= 0) {
-        $_SESSION['username'] = $usr;
-        if($usr=="admin"){
-            $admin=true;
+        if($usr!="admin"){
+            $sql = "INSERT INTO `Utente` ('usr', 'crPsw', 'nome', 'cognome', 'mail', 'cell', 'dataN', 'dataA', 'grado', 'pa') VALUES ($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $dataA, $grado, $pa);";
+            $result = $conn->query($sql);
         }else{
-            $admin=false;
+            
+            return array("success" => false, "message" => "Username già in utilizzo");
         }
-        return array("success" => true, "message" => "Login effettuato con successo", "admin" => $admin);
+        return array("success" => true, "message" => "Utente Creato con successo");
     } else {
         return array("success" => false, "message" => "Username già in utilizzo");
     }
@@ -60,10 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail = $data["mail"];
     $cellulare = $data["cellulare"];
     $dataN = $data["dataN"];
+    $dataA = $data["dataA"];
     $grado = $data["grado"];
     $pa = $data["pa"];
 
-    $registrazione_result = registerUser($username, $password, $nome, $cognome, $mail, $cellulare, $dataN, $grado, $pa);
+    $registrazione_result = registerUser($username, $password, $nome, $cognome, $mail, $cellulare, $dataN, $dataA, $grado, $pa);
 
     echo json_encode($registrazione_result);
 } else {
