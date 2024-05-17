@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="grado">Grado</label>
-                                <select class="form-control" id="grado" required>
+                                <select class="form-control" id="grado" name="grado">
                                     <option value="">Seleziona Grado</option>
 
                                 </select>
@@ -163,31 +163,20 @@
                 todayHighlight: true
             });
 
-
             //GET dei Gradi
             $(document).ready(function() {
                 $.ajax({
-                    url: 'WSgradi.php', 
+                    url: 'WSgradi.php',
                     type: 'GET',
-                    dataType: 'JSON',
-        
                     success: function(data) {
-                        
-                            for(i=1; i<=12; i++){
-                                if(!(data[i]===undefined)){
-                                    var row = $('<tr>');
-                                    row.append($('<td>').text(data[i].mese));
-                                    row.append($('<td>').text(data[i].data));
-                                    row.append($('<td>').text(data[i].nome));
-                                    row.append($('</tr>'));
-            
-                                }
-                                $('#festivity-table tbody').append(row);
-                            };
+                        var parole = data.split(',');
+                        $.each(parole, function(index, valore) {
+                            $('#grado').append('<option value="' + valore + '">' + valore + '</option>');
+                        });
                     },
                     error: function(xhr, status, error) {
                         console.error('Errore durante la richiesta AJAX:', status, error);
-                    }   
+                    }
                 });
             });
         </script>

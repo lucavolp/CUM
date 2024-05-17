@@ -67,10 +67,14 @@ $(document).ready(function() {
             success: function(response) {
                 alert(response.message);
                 if (response.success) {
-                    window.location.href = '../private/dashboard.php'; 
-                }
-                if(admin){
-                    window.location.href = '../private/adminhome.php'; 
+                    if(response.admin){
+                        window.location.href = '../private/adminhome.php'; 
+                        console.log("admin")
+                    }
+                    else{
+                        window.location.href = '../private/dashboard.php'; 
+                        console.log("USER")
+                    }
                 }
             },
             error: function(xhr, status, error) {

@@ -19,7 +19,7 @@ function authenticateUser($usr, $pass) {
         }else{
             $admin=false;
         }
-        return array("success" => true, "message" => "Login effettuato con successo", $admin);
+        return array("success" => true, "message" => "Login effettuato con successo", "admin" => $admin);
     } else {
         return array("success" => false, "message" => "Credenziali non valide");
     }
