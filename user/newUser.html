@@ -147,7 +147,7 @@
                     var pa = $('#pa').val();
 
                     $.ajax({
-                        url: 'register.php',
+                        url: './register.php',
                         type: 'POST',
                         contentType: 'application/json',
                         data: JSON.stringify({ username: username, password: password , nome:nome, cognome:cognome, mail:mail, cellulare:cellulare, dataN:dataN, grado:grado, pa:pa}),
@@ -158,6 +158,7 @@
                             }
                         },
                         error: function(xhr, status, error) {
+                            console.log(data);
                             alert('Errore durante il login.');
                         }
                     });

@@ -2,16 +2,29 @@
 session_start();
 header('Content-Type: application/json');
 
-function registerUser($usr, $pass) {
+function registerUser($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $grado, $pa) {
 
 
     include("../assets/db/dbconn.php");
-/*
+
     $crPsw=crypt($pass, PASSWORD_DEFAULT);
     $sql = "SELECT * FROM Utente WHERE usr = '$usr' AND pwd = '$crPsw'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+
+    /*
+        funziona la verifica se esiste gia un utente con lo stesso username
+        - bisogna far la query d'inserimento
+    */
+
+
+
+
+
+
+
+
+    if ($result->num_rows <= 0) {
         $_SESSION['username'] = $usr;
         if($usr=="admin"){
             $admin=true;
@@ -20,10 +33,8 @@ function registerUser($usr, $pass) {
         }
         return array("success" => true, "message" => "Login effettuato con successo", "admin" => $admin);
     } else {
-        return array("success" => false, "message" => "Credenziali non valide");
+        return array("success" => false, "message" => "Username già in utilizzo");
     }
-    */
-    return(""); //per non avere warning adesso
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -44,11 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $username = $data["username"];
     $password = $data["password"];
+    $nome = $data["nome"];
+    $cognome = $data["cognome"];
+    $mail = $data["mail"];
+    $cellulare = $data["cellulare"];
+    $dataN = $data["dataN"];
+    $grado = $data["grado"];
+    $pa = $data["pa"];
 
+    $registrazione_result = registerUser($username, $password, $nome, $cognome, $mail, $cellulare, $dataN, $grado, $pa);
 
-    $registrazione_result = registerUser($username, $password);
-
-    echo json_encode($authentication_result);
+    echo json_encode($registrazione_result);
 } else {
     echo json_encode(array("success" => false, "message" => "Richiesta non valida"));
     $conn->close();
