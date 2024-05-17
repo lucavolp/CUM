@@ -62,7 +62,7 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="login-form" style="text-align: center;">
                         <h2 class="text-center mb-4">Completa registrazione</h2>
-                        <form id="loginForm1">
+                        <form id="loginForm2">
                             <div class="form-group">
                                 <label for="username">Nome*</label>
                                 <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
@@ -138,16 +138,23 @@
                     
                     var username = $('#username').val();
                     var password = $('#password').val();
-                    
+                    var nome = $('#nome').val();
+                    var cognome = $('#cognome').val();
+                    var mail = $('#mail').val();
+                    var cellulare = $('#cellulare').val();
+                    var dataN = $('#dataN').val();
+                    var grado = $('#grado').val();
+                    var pa = $('#pa').val();
+
                     $.ajax({
-                        url: 'login2.php',
+                        url: 'register.php',
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify({ username: username, password: password }),
+                        data: JSON.stringify({ username: username, password: password , nome:nome, cognome:cognome, mail:mail, cellulare:cellulare, dataN:dataN, grado:grado, pa:pa}),
                         success: function(response) {
                             alert(response.message);
                             if (response.success) {
-                                window.location.href = '../private/dashboard.php'; 
+                                window.location.href = '/accesso2.html'; 
                             }
                         },
                         error: function(xhr, status, error) {
@@ -163,21 +170,23 @@
                 todayHighlight: true
             });
 
-            //GET dei Gradi
+            //GET dei Gradi           
             $(document).ready(function() {
                 $.ajax({
                     url: 'WSgradi.php',
                     type: 'GET',
                     success: function(data) {
-                        var parole = data.split(',');
-                        $.each(parole, function(index, valore) {
-                            $('#grado').append('<option value="' + valore + '">' + valore + '</option>');
+                        var gradi = JSON.parse(data);
+                        
+                        $.each(gradi, function(index, item) {
+                            $('#grado').append('<option value="' + item.valore + '">' + item.valore + '</option>');
                         });
                     },
                     error: function(xhr, status, error) {
                         console.error('Errore durante la richiesta AJAX:', status, error);
                     }
                 });
+                
             });
         </script>
 
