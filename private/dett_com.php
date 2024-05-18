@@ -49,6 +49,7 @@ if ($result->num_rows > 0) {
                     <p class="card-text"><?php echo $comunicazione['contenuto']; ?></p>
                 </div>
             </div>
+            <a type="button" class="btn btn-warning back-button" href="./dashboard.php" name="Indietro" style="position:absolute; left:10px">Indietro</a>
         </div>
     </div>
 </div>

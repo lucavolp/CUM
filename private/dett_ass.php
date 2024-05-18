@@ -8,13 +8,15 @@
 
     include("../assets/db/dbconn.php");
 
+    $usernm=$_SESSION['username'];
+
     $id_servizio = $_GET['id'];
-    $sql = "SELECT * FROM Servizio WHERE nome LIKE '%$id_servizio'";
+    $sql = "SELECT * FROM Assenze WHERE usr_utente = $usernm";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        $ser = $result->fetch_assoc();
+        $ass = $result->fetch_assoc();
     } else {
-        echo "Servizio non trovato.";
+        echo "Assenza non registrata.";
         exit();
     }
 ?>
@@ -24,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dettagli del Servizio</title>
+    <title>Dettagli dell'assenza</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -44,10 +46,8 @@
                 <div class="card-body">
                     <table class="table">
                         <tbody>
-                            <h4>Nome servizio: <?php echo $ser['nome']; ?></h4>
-                            <h4>Gettone: <?php echo $ser['gettone']; ?> Euro</h4>
-                            <h4>Durata: <?php echo $ser['ore_durata']; ?> Ore</h4>
-                            <h4>Luogo: <?php echo $ser['luogo']; ?> </h4>
+                            <h4>Data assenza: <?php echo $ass['data']; ?></h4>
+                            <h4>Dettagli: <?php echo $ser['gettone']; ?> Euro</h4>
                         </tbody>
                     </table>
                 </div>

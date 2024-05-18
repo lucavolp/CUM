@@ -97,5 +97,6 @@
     INSERT INTO `Grado` (`grado`, `descrizione`) VALUES ('Capitano','Comandante del Corpo'), ('Tenente','Tenente e responsabile del Comando'), ('Sotto-Tenente','Aiutante e/o sostituto del Tenente');
     -- alter table Utente add mail varchar(64);
     -- UPDATE Utente SET pwd = '2yn.4fvaTgedM' WHERE usr = 'admin';
-
+    -- table tipologia droppato
+    
 
