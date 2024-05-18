@@ -63,7 +63,8 @@
                 url: url,
                 data: form.serialize(),
                 success: function(response) {
-                    window.location.href = '../dett_ser.php?id=' + response.nome;
+                    //window.location.href = '../dett_ser.php?id=' + response.nome;
+                    console.log(response.nome);
                 },
                 error: function(xhr, status, error) {
                     console.error('Errore durante la richiesta AJAX:', status, error);

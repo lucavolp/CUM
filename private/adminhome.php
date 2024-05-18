@@ -53,7 +53,7 @@ $assen = $conn->query($sql);
                         <h4 class="card-title">Servizi</h4>
                         <ul class="list-group">
                             <li class="list-group-item">
-                            <a href="addServizio.php">Aggiungi Servizio</a></li>
+                            <a href="./admin/addServizio.html">Aggiungi Servizio</a></li>
                             
                                 <?php
                                     if ($serv->num_rows > 0) {
