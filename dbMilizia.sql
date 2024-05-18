@@ -81,6 +81,15 @@
     DELIMITER ;
     ;
 
+
+    CREATE TABLE Svolge(
+        usr_utente VARCHAR(25),
+        id_servizio INTEGER,
+        data_ora DATETIME,
+        isCompleto BOOLEAN,
+        PRIMARY KEY (usr_utente, id_servizio, data_ora)
+    );
+
     INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `data_arruolo`, `data_nascita`, `PA`, `cellulare`, `id_ruolo`, `id_grado`) VALUES ('admin', '2yn.4fvaTgedM', 'admin', 'admin', NULL, '2005-05-21', 0, '3669886162', NULL, NULL);
     INSERT INTO `Festivita` (`id`, `nome`, `data`, `descrizione`) VALUES (NULL, "Sant'Agata", '2024-02-05', 'Compatrona'), (NULL, "Festa dell'arengo e Milizie", '2024-03-25', "Festa dell'arengo e delle Milizie"), (NULL, "Insediamento Reggenti", '2024-04-01', 'Insediamento nuovi capitani reggenti'), (NULL, "Insediamento Reggenti2", '2024-04-02', 'Insediamento nuovi capitani reggenti');
     INSERT INTO `Servizio` (`nome`,`min_persone`, `ore_durata`, `luogo`, `gettone`) VALUES ('Manovra',2,1,'Citta',15);
@@ -88,4 +97,5 @@
     INSERT INTO `Grado` (`grado`, `descrizione`) VALUES ('Capitano','Comandante del Corpo'), ('Tenente','Tenente e responsabile del Comando'), ('Sotto-Tenente','Aiutante e/o sostituto del Tenente');
     -- alter table Utente add mail varchar(64);
     -- UPDATE Utente SET pwd = '2yn.4fvaTgedM' WHERE usr = 'admin';
+
 

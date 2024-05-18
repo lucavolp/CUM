@@ -173,19 +173,14 @@
                     var dataN = $('#dataN').val();
                     var dataA = $('#dataA').val();
                     var grado = $('#grado').val();
-                    var pa = $('#pa').val();
 
-
-                    var check = {
-                        pa: $('#pa').is(':checked') ? 1 : 0
-                    };
 
                     $.ajax({
                         url: './register.php',
                         type: 'POST',
                         contentType: 'application/json',
                         
-                        data: JSON.stringify({ username: username, password: password , nome:nome, cognome:cognome, mail:mail, cellulare:cellulare, dataN:dataN, dataA:dataA, grado:grado, pa:pa}),
+                        data: JSON.stringify({ username: username, password: password , nome:nome, cognome:cognome, mail:mail, cellulare:cellulare, dataN:dataN, dataA:dataA, grado:grado}),
                         success: function(response) {
                             alert(response.message);
                             if (response.success) {

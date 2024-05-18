@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-function registerUser($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $dataA, $grado, $pa) {
+function registerUser($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $dataA, $grado) {
 
     
     include("../assets/db/dbconn.php");
@@ -13,9 +13,7 @@ function registerUser($usr, $pass, $nome, $cognome, $mail, $cell, $dataN, $dataA
 
     if ($result->num_rows <= 0) {
         if($usr!="admin"){
-            //if($pa==1)                    //NON FUNZIONA LA COSA DELLA PA
-                $pa=true;
-            $sql = "INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `mail`, `cellulare`, `data_nascita`, `data_arruolo`, `id_grado`, `PA`, `id_ruolo`) VALUES ('$usr', '$crPsw', '$nome', '$cognome', '$mail', '$cell', $dataN, $dataA, $grado, $pa, 2);";
+            $sql = "INSERT INTO `Utente` (`usr`, `pwd`, `nome`, `cognome`, `mail`, `cellulare`, `data_nascita`, `data_arruolo`, `id_grado`, `id_ruolo`) VALUES ('$usr', '$crPsw', '$nome', '$cognome', '$mail', '$cell', STR_TO_DATE('$dataN', '%d/%m/%Y'), STR_TO_DATE('$dataA', '%d/%m/%Y'), $grado, 2);";
             $result = $conn->query($sql);
             //echo $sql;
             return array("success" => true, "message" => "Utente Creato", "risultato query" => $result);
@@ -41,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $dataN = $data["dataN"];
     $dataA = $data["dataA"];
     $grado = $data["grado"];
-    $pa = $data["pa"];
 
     if ($data === null) {
         echo json_encode(array("success" => false, "message" => "Dati JSON non validi"));
@@ -57,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     
 
-    $registrazione_result = registerUser($username, $password, $nome, $cognome, $mail, $cellulare, $dataN, $dataA, $grado, $pa);
+    $registrazione_result = registerUser($username, $password, $nome, $cognome, $mail, $cellulare, $dataN, $dataA, $grado);
 
     echo json_encode($registrazione_result);
 } else {
