@@ -141,7 +141,7 @@ $assen = $conn->query($sql);
             
             $(document).ready(function() {
                 var k = 1;
-                /*
+                
                 $.ajax({
                     url: '../ws/get_servizi.php',
                     type: 'GET',
@@ -157,34 +157,10 @@ $assen = $conn->query($sql);
                         console.error('Errore durante la richiesta AJAX:', status, error);
                     }
                 });
-                */
+                
 
-                $.ajax({
-
-                    //function fetchServizi() {
-                url: 'get_servizi.php',
-                type: 'GET',
-                data: { search: search },
-                success: function(data) {
-                    var servizi = JSON.parse(data);
-                    var list = $('#servizi-list');
-                    list.find('li:gt(0)').remove(); // Clear existing items except the first one
-
-                    if (servizi.length > 0) {
-                        $.each(servizi, function(index, servizio) {
-                            if (index < 5) { // Display only the first 5 items
-                                var edId = servizio.nome.replace(/ /g, '_');
-                                list.append('<li class="list-group-item"><a href="dett_ser.php?id=' + edId + '">' + servizio.nome + '</a></li>');
-                            }
-                        });
-                    } else {
-                        list.append('<li class="list-group-item">Nessun servizio svolto</li>');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Errore durante la richiesta AJAX:', status, error);
-                }
-            });
+                
+            
             
         })
 
