@@ -1,22 +1,24 @@
 <?php
-include("../assets/db/dbconn.php");
+session_start();
 
-// Check if a search parameter is provided
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-
-$sql = "SELECT * FROM Servizio";
-if (!empty($search)) {
-    $sql .= " WHERE nome LIKE '%" . $conn->real_escape_string($search) . "%'";
+if (!isset($_SESSION['username'])) {
+    header("Location: ../accesso2.html");
+    exit();
 }
 
+include("../../assets/db/dbconn.php");
+
+//$sql = "SELECT * FROM Assenza WHERE utente_usr='".$_SESSION['username']."'";
+$sql = "SELECT * FROM Servizio";
 $result = $conn->query($sql);
 
-$servizi = array();
+$assenze = array();
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        $servizi[] = $row;
+        $assenze[] = $row;
     }
 }
 
-echo json_encode($servizi);
 $conn->close();
+header('Content-Type: application/json');
+echo json_encode($assenze);

@@ -1,14 +1,14 @@
 <?php
-include("../assets/db/dbconn.php");
+session_start();
 
-// Check if a search parameter is provided
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-
-$sql = "SELECT * FROM Comunicazione";
-if (!empty($search)) {
-    $sql .= " WHERE oggetto LIKE '%" . $conn->real_escape_string($search) . "%'";
+if (!isset($_SESSION['username'])) {
+    header("Location: ../accesso2.html");
+    exit();
 }
 
+include("../../assets/db/dbconn.php");
+
+$sql = "SELECT * FROM Comunicazione";
 $result = $conn->query($sql);
 
 $comunicazioni = array();
@@ -18,5 +18,6 @@ if ($result->num_rows > 0) {
     }
 }
 
-echo json_encode($comunicazioni);
 $conn->close();
+header('Content-Type: application/json');
+echo json_encode($comunicazioni);

@@ -1,5 +1,5 @@
 <?php
-include("../assets/db/dbconn.php");
+include("../../assets/db/dbconn.php");
 
 // Check if a search parameter is provided
 $search = isset($_GET['search']) ? $_GET['search'] : '';
