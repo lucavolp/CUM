@@ -21,4 +21,3 @@ if ($result->num_rows > 0) {
 $conn->close();
 header('Content-Type: application/json');
 echo json_encode($users);
-?>

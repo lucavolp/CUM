@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: ../accesso2.html");
+    header("Location: ../../accesso2.html");
     exit();
 }
 
@@ -21,7 +21,7 @@ $logged_in_username = $_SESSION['username'];
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="dashboard.php">Benvenuto,  <?php echo '<i>'.$logged_in_username.'</i>'; ?></a>
+            <a class="navbar-brand" href="../dashboard.php">Benvenuto,  <?php echo '<i>'.$logged_in_username.'</i>'; ?></a>
             <a class="btn btn-danger" href="../logout.php">Logout</a>
         </div>
     </nav>
@@ -55,7 +55,7 @@ $logged_in_username = $_SESSION['username'];
                                     <input type="text" class="form-control" id="luogo" name="luogo" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Aggiungi Servizio</button>
-                                <button type="button" class="btn btn-warning" id="continua" name="continua">Assegna a</button>
+                                <button class="btn btn-warning" id="continua" name="continua">Assegna a</button>
                             </form>
                         </div>
                     </div>
@@ -101,10 +101,11 @@ $logged_in_username = $_SESSION['username'];
                     dataType: 'json',
                     success: function(data) {
                         var usersContainer = $('#users-container');
+                        var index = 1;
                         $.each(data, function(index, user) {
                             usersContainer.append(
                                 '<div class="form-check">' +
-                                    '<input class="form-check-input" type="checkbox" value="' + user.id + '" id="user' + user.id + '">' +
+                                    '<input class="form-check-input" type="checkbox" value="' + user.usr + '" id="user' + user.usr + '">' +
                                     '<label class="form-check-label" for="user' + user.id + '">' +
                                         user.nome + ' ' + user.cognome +
                                     '</label>' +
@@ -149,7 +150,42 @@ $logged_in_username = $_SESSION['username'];
                     selectedUsers.push($(this).val());
                 });
 
+
+
                 // Logica per assegnare il servizio agli utenti selezionati
+
+
+
+
+
+                        //////////////////////////////
+                        event.preventDefault();
+                
+                var nome = $('#nome').val();
+                var gettone = $('#gettone').val();
+                var ore_durata = $('#ore_durata').val();
+                var min_persone = $('#min_persone').val();
+                var luogo = $('#luogo').val();
+                
+
+                $.ajax({
+                    url: 'WSaddservizio.php',
+                    type: 'POST',
+                    data: JSON.stringify({ nome: nome, gettone: gettone, ore_durata: ore_durata, min_persone: min_persone, luogo: luogo, selectedUserss:selectedUsers}),
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Errore durante la richiesta AJAX:', status, error);
+                        alert('Si è verificato un errore durante l\'aggiunta del servizio. Si prega di riprovare.');
+                    }
+                });
+                        //////////////////////////////
+
+
+
+
+
                 console.log('Utenti selezionati:', selectedUsers);
             });
         });
