@@ -96,7 +96,7 @@ $logged_in_username = $_SESSION['username'];
                 
                 // Carica gli utenti
                 $.ajax({
-                    url: './ws/get_users.php',
+                    url: '../ws/get_users.php',
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {

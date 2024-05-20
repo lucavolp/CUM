@@ -6,9 +6,9 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include("../assets/db/dbconn.php");
+include("../../assets/db/dbconn.php");
 
-$sql = "SELECT id, nome, cognome FROM Utenti";  // Modifica questa query in base alla tua tabella degli utenti
+$sql = "SELECT usr, nome, cognome FROM Utente";  // Modifica questa query in base alla tua tabella degli utenti
 $result = $conn->query($sql);
 
 $users = array();
