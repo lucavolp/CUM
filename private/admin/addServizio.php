@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 $logged_in_username = $_SESSION['username'];
-
 ?>
 
 <!DOCTYPE html>
@@ -64,21 +63,27 @@ $logged_in_username = $_SESSION['username'];
             </div>
         </div>
 
-
         <div class="container mt-4" style="display: none" id="secondo">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Aggiungi Nuovo Servizio</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <form id="addServizioForm2">
-                            
-                            <button type="submit" class="btn btn-primary">Aggiungi Servizio</button>
-                        </form>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Assegna Servizio agli Utenti</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="addServizioForm2">
+                                <div class="form-group">
+                                    <label>Seleziona Utenti:</label>
+                                    <div id="users-container">
+                                        <!-- I checkbox verranno inseriti qui tramite JavaScript -->
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Conferma Assegnazione</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -86,9 +91,32 @@ $logged_in_username = $_SESSION['username'];
         $(document).ready(function() {
 
             $('#continua').click(function() {
-                        $('#primo').hide();
-                        $('#secondo').show();
+                $('#primo').hide();
+                $('#secondo').show();
+                
+                // Carica gli utenti
+                $.ajax({
+                    url: './ws/get_users.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var usersContainer = $('#users-container');
+                        $.each(data, function(index, user) {
+                            usersContainer.append(
+                                '<div class="form-check">' +
+                                    '<input class="form-check-input" type="checkbox" value="' + user.id + '" id="user' + user.id + '">' +
+                                    '<label class="form-check-label" for="user' + user.id + '">' +
+                                        user.nome + ' ' + user.cognome +
+                                    '</label>' +
+                                '</div>'
+                            );
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Errore durante la richiesta AJAX:', status, error);
+                    }
                 });
+            });
 
             $('#addServizioForm1').submit(function(event) {
                 event.preventDefault();
@@ -99,17 +127,12 @@ $logged_in_username = $_SESSION['username'];
                 var min_persone = $('#min_persone').val();
                 var luogo = $('#luogo').val();
 
-
-                var url = 'WSaddservizio.php';
-
                 $.ajax({
-                    url: url,
+                    url: 'WSaddservizio.php',
                     type: 'POST',
-                    data: JSON.stringify({ nome: nome, gettone: gettone, ore_durata:ore_durata, min_persone:min_persone, luogo:luogo}),
-                    //data: form.serialize(),
+                    data: JSON.stringify({ nome: nome, gettone: gettone, ore_durata: ore_durata, min_persone: min_persone, luogo: luogo }),
                     success: function(response) {
-                        //window.location.href = '../dett_ser.php?id=' + response.nome;
-                        console.log(response.nome);
+                        console.log(response);
                     },
                     error: function(xhr, status, error) {
                         console.error('Errore durante la richiesta AJAX:', status, error);
@@ -117,8 +140,19 @@ $logged_in_username = $_SESSION['username'];
                     }
                 });
             });
+
+            $('#addServizioForm2').submit(function(event) {
+                event.preventDefault();
+
+                var selectedUsers = [];
+                $('#users-container input:checked').each(function() {
+                    selectedUsers.push($(this).val());
+                });
+
+                // Logica per assegnare il servizio agli utenti selezionati
+                console.log('Utenti selezionati:', selectedUsers);
+            });
         });
     </script>
-
-    </body>
+</body>
 </html>
