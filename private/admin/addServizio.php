@@ -56,7 +56,7 @@ $logged_in_username = $_SESSION['username'];
                                     <input type="text" class="form-control" id="luogo" name="luogo" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Aggiungi Servizio</button>
-                                <button type="button" class="btn btn-warning" id="continua" name="continua">Assegna a</button>
+                                <button class="btn btn-warning" id="continua" name="continua">Assegna a</button>
                             </form>
                         </div>
                     </div>
@@ -156,6 +156,27 @@ $logged_in_username = $_SESSION['username'];
                     selectedUsers.push($(this).val());
                 });
 
+<<<<<<< HEAD
+=======
+
+
+                // Logica per assegnare il servizio agli utenti selezionati
+
+
+
+
+
+                        //////////////////////////////
+                        event.preventDefault();
+                
+                var nome = $('#nome').val();
+                var gettone = $('#gettone').val();
+                var ore_durata = $('#ore_durata').val();
+                var min_persone = $('#min_persone').val();
+                var luogo = $('#luogo').val();
+                
+
+>>>>>>> ffa71bfb87cb182d64650f58293599782921241d
                 $.ajax({
                     url: 'WSaddservizio.php',
                     type: 'POST',

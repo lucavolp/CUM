@@ -18,7 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ore_durata = $data["ore_durata"];
     $min_persone = $data["min_persone"];
     $luogo = $data["luogo"];
+<<<<<<< HEAD
     $usr_pers = $data["selectedUsers"];
+=======
+    $usr_pers = $data["usr_pers"];
+>>>>>>> ffa71bfb87cb182d64650f58293599782921241d
 
 
     if (isset($data['nome']) && isset($data['gettone']) && isset($data['ore_durata']) && isset($data['luogo']) && isset($data['min_persone'])) {
@@ -31,7 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $luogo = $conn->real_escape_string($data['luogo']);
         */
 
+<<<<<<< HEAD
         /*
+=======
+>>>>>>> ffa71bfb87cb182d64650f58293599782921241d
         $sql = "INSERT INTO `Servizio` (`nome`, `min_persone`, `ore_durata`, `luogo`, `gettone`, `usr_pers`) VALUES ('$nome', '$min_persone', '$ore_durata', '$luogo', '$gettone', '$usr_pers')";
 
         if ($conn->query($sql) === TRUE) {
