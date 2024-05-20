@@ -120,7 +120,6 @@ $assen = $conn->query($sql);
                                     while (($row = $assen->fetch_assoc())&&($nRighe<=5)) {
                                         echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['cod'] . '">' . $row['oggetto'] . '</a></li>';
                                         $nRighe++;
-                                        
                                     }
                                 } else {
                                     echo '<li class="list-group-item">Nessuna assenza segnalata</li>';

@@ -33,6 +33,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
+    /*
     $(document).ready(function() {
         $.ajax({
             url: 'WSfestivita.php', 
@@ -57,6 +58,30 @@
             error: function(xhr, status, error) {
                 console.error('Errore durante la richiesta AJAX:', status, error);
             }   
+        });
+    });*/
+    $(document).ready(function() {
+        $.ajax({
+            url: 'WSfestivita.php', 
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                for (var i = 1; i <= 12; i++) {
+                    if (data[i] !== undefined) {
+                        var events = data[i].eventi;
+                        for (var j = 0; j < events.length; j++) {
+                            var row = $('<tr>');
+                            row.append($('<td>').text(data[i].mese));
+                            row.append($('<td>').text(events[j].data));
+                            row.append($('<td>').text(events[j].nome));
+                            $('#festivity-table tbody').append(row);
+                        }
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Errore durante la richiesta AJAX:', status, error);
+            }
         });
     });
 </script>
