@@ -8,16 +8,29 @@ header("Access-Control-Allow-Headers: Content-Type");
 include("../../assets/db/dbconn.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['nome']) && isset($_POST['gettone']) && isset($_POST['ore_durata']) && isset($_POST['luogo']) && isset($_POST['min_persone'])) {
-        //sta roba serve per evitare iniezioni sql
-        $nome = $conn->real_escape_string($_POST['nome']);
-        $gettone = $conn->real_escape_string($_POST['gettone']);
-        $ore_durata = $conn->real_escape_string($_POST['ore_durata']);
-        $luogo = $conn->real_escape_string($_POST['luogo']);
 
-        $sql = "INSERT INTO Servizio (nome, min_persone, ore_durata, luogo, gettone) VALUES ('$nome', '$min_persone', '$ore_durata', '$luogo', '$gettone')";
+    $json_data = file_get_contents("php://input");
+    $data = json_decode($json_data, true);
+
+    $nome = $data["nome"];
+    $gettone = $data["gettone"];
+    $ore_durata = $data["ore_durata"];
+    $min_persone = $data["min_persone"];
+    $luogo = $data["luogo"];
+
+
+    if (isset($data['nome']) && isset($data['gettone']) && isset($data['ore_durata']) && isset($data['luogo']) && isset($data['min_persone'])) {
+        //sta roba serve per evitare iniezioni sql
+        /*
+            $nome = $conn->real_escape_string($data['nome']);
+            $gettone = $conn->real_escape_string($data['gettone']);
+            $ore_durata = $conn->real_escape_string($data['ore_durata']);
+            $luogo = $conn->real_escape_string($data['luogo']);
+        */
+        $sql = "INSERT INTO `Servizio` (`nome`, `min_persone`, `ore_durata`, `luogo`, `gettone`) VALUES ('$nome', '$min_persone', '$ore_durata', '$luogo', '$gettone')";
 
         if ($conn->query($sql) === TRUE) {
+
             $response = array('id' => $conn->insert_id);
             echo json_encode($response);
         } else {

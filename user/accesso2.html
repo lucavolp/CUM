@@ -69,7 +69,7 @@ $(document).ready(function() {
                 if (response.success) {
                     if(response.admin){
                         window.location.href = '../private/adminhome.php'; 
-                        console.log("admin")
+                        console.log(response.admin);
                     }
                     else{
                         window.location.href = '../private/dashboard.php'; 

@@ -17,6 +17,7 @@ $serv = $conn->query($sql);
 $sql = "SELECT * FROM Assenza";
 $assen = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="it">
     <head>
@@ -46,16 +47,18 @@ $assen = $conn->query($sql);
     <br><br>
 
     <div class="container">
+        
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Servizi</h4>
-                        <ul class="list-group">
+                        <ul class="list-group" id="servizi-list">
                             <li class="list-group-item">
-                            <a href="./admin/addServizio.html">Aggiungi Servizio</a></li>
+                            <a href="./admin/addServizio.php">Aggiungi Servizio</a></li>
                             
                                 <?php
+                                /*
                                     if ($serv->num_rows > 0) {
                                         $nRighe=0;
                                         while (($row = $serv->fetch_assoc())&&($nRighe<=5)) {
@@ -69,17 +72,20 @@ $assen = $conn->query($sql);
                                     } else {
                                         echo '<li class="list-group-item">Nessun servizio svolto</li>';
                                     }
+                                    */
                                 ?>
                         </ul>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Elenco delle comunicazioni</h4>
                         <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="./admin/addComunicazione.php">Aggiungi Comunicazione</a></li>
                             <?php
                                 if ($comun->num_rows > 0) {
                                     $nRighe=0;
@@ -106,6 +112,8 @@ $assen = $conn->query($sql);
                     <div class="card-body">
                         <h4 class="card-title">Assenze</h4>
                         <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="./admin/addAssenza.php">Aggiungi Assenza</a></li>
                             <?php
                                 if ($assen->num_rows > 0) {
                                     $nRighe=0;
@@ -125,5 +133,64 @@ $assen = $conn->query($sql);
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script>
+            
+            
+            $(document).ready(function() {
+                var k = 1;
+                /*
+                $.ajax({
+                    url: '../ws/get_servizi.php',
+                    type: 'GET',
+                    success: function(data) {
+                        var servizi = JSON.parse(data);
+                        
+                        $.each(servizi, function(index, item) {
+                            $('#grado').append('<option value="' + k + '">' + item.valore + '</option>');
+                            k++;
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Errore durante la richiesta AJAX:', status, error);
+                    }
+                });
+                */
+
+                $.ajax({
+
+                    //function fetchServizi() {
+                url: 'get_servizi.php',
+                type: 'GET',
+                data: { search: search },
+                success: function(data) {
+                    var servizi = JSON.parse(data);
+                    var list = $('#servizi-list');
+                    list.find('li:gt(0)').remove(); // Clear existing items except the first one
+
+                    if (servizi.length > 0) {
+                        $.each(servizi, function(index, servizio) {
+                            if (index < 5) { // Display only the first 5 items
+                                var edId = servizio.nome.replace(/ /g, '_');
+                                list.append('<li class="list-group-item"><a href="dett_ser.php?id=' + edId + '">' + servizio.nome + '</a></li>');
+                            }
+                        });
+                    } else {
+                        list.append('<li class="list-group-item">Nessun servizio svolto</li>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Errore durante la richiesta AJAX:', status, error);
+                }
+            });
+            
+        })
+
+            
+        </script>
     </body>
+
+    
 </html>
