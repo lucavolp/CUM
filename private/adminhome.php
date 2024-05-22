@@ -142,7 +142,7 @@ $assen = $conn->query($sql);
                 var k = 1;
                 
                 $.ajax({
-                    url: '../ws/get_servizi.php',
+                    url: '../private/ws/get_servizi.php',
                     type: 'GET',
                     success: function(data) {
                         var servizi = JSON.parse(data);

@@ -276,13 +276,14 @@ $logged_in_username = $_SESSION['username'];
                             <div class="form-group">
                                 <label>Seleziona Utenti:</label>
                                 <div id="users-container">
-                                    <!-- I checkbox verranno inseriti qui tramite JavaScript -->
+                                    
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Conferma Assegnazione</button>
                         </form>
                     </div>
                 </div>
+                <button type="button" class="btn btn-warning" id="ind">Indietro</button>
             </div>
         </div>
     </div>
@@ -290,8 +291,8 @@ $logged_in_username = $_SESSION['username'];
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    /*
 $(document).ready(function() {
-
     $('#continua').click(function() {
         $('#primo').hide();
         $('#secondo').show();
@@ -337,7 +338,6 @@ $(document).ready(function() {
             min_persone: min_persone,
             luogo: luogo
         });
-
         $('#continua').trigger('click');
     });
 
@@ -349,8 +349,8 @@ $(document).ready(function() {
         $('#users-container input:checked').each(function() {
             selectedUsers.push($(this).val());
         });
-
-        formData.selectedUsers = selectedUsers;
+        
+        formData.selectedUsers = selectedUsers; //errore 
 
         $.ajax({
             url: 'WSaddservizio.php',
@@ -369,6 +369,90 @@ $(document).ready(function() {
 
         console.log('Utenti selezionati:', selectedUsers);
     });
+});*/
+$('#continua').click(function() {
+    var nome = $('#nome').val();
+    var gettone = $('#gettone').val();
+    var ore_durata = $('#ore_durata').val();
+    var min_persone = $('#min_persone').val();
+    var luogo = $('#luogo').val();
+
+    var formData = {
+        nome: nome,
+        gettone: gettone,
+        ore_durata: ore_durata,
+        min_persone: min_persone,
+        luogo: luogo
+    };
+
+    // Memorizza i dati nel container del secondo form
+    $('#secondo').data('formData', formData);
+
+    $('#primo').hide();
+    $('#secondo').show();
+
+    // Carica gli utenti
+    $.ajax({
+        url: '../ws/get_users.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            var usersContainer = $('#users-container');
+            usersContainer.empty(); // Pulisce il contenitore degli utenti prima di aggiungere nuovi elementi
+            $.each(data, function(index, user) {
+                usersContainer.append(
+                    '<div class="form-check">' +
+                        '<input class="form-check-input" type="checkbox" value="' + user.usr + '" id="user' + user.usr + '">' +
+                        '<label class="form-check-label" for="user' + user.usr + '">' +
+                            user.nome + ' ' + user.cognome +
+                        '</label>' +
+                    '</div>'
+                );
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Errore durante la richiesta AJAX:', status, error);
+        }
+    });
+});
+
+$('#addServizioForm2').submit(function(event) {
+    event.preventDefault();
+
+    // Recupera i dati dal form precedente
+    var formData = $('#secondo').data('formData');
+
+    // Verifica che formData sia un oggetto JavaScript
+    formData = formData || {}; // Assicura che formData sia un oggetto
+
+    var selectedUsers = [];
+    $('#users-container input:checked').each(function() {
+        selectedUsers.push($(this).val());
+    });
+
+    formData.selectedUsers = selectedUsers;
+
+    $.ajax({
+        url: 'WSaddservizio.php',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            console.log(response);
+            // Redirect or show a success message
+        },
+        error: function(xhr, status, error) {
+            console.error('Errore durante la richiesta AJAX:', status, error);
+            alert('Si è verificato un errore durante l\'aggiunta del servizio. Si prega di riprovare.');
+        }
+    });
+
+    console.log('Utenti selezionati:', selectedUsers);
+});
+
+$('#ind').click(function() {
+    $('#primo').show();
+    $('#secondo').hide();
 });
 </script>
 </body>
