@@ -156,8 +156,6 @@ $logged_in_username = $_SESSION['username'];
                     selectedUsers.push($(this).val());
                 });
 
-<<<<<<< HEAD
-=======
 
 
                 // Logica per assegnare il servizio agli utenti selezionati
@@ -176,7 +174,6 @@ $logged_in_username = $_SESSION['username'];
                 var luogo = $('#luogo').val();
                 
 
->>>>>>> ffa71bfb87cb182d64650f58293599782921241d
                 $.ajax({
                     url: 'WSaddservizio.php',
                     type: 'POST',
