@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
-    <!-- Bootstrap CSS for general styling -->
+    <title>Galleria Fotografica</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -47,7 +46,6 @@
             transform: scale(1.05);
         }
 
-        /* Lightbox styles */
         .lightbox {
             display: none;
             position: fixed;
@@ -81,12 +79,14 @@
     </style>
 </head>
 <body>
-    <!-- Bootstrap Carousel -->
     <h1>Galleria Fotografica</h1>
+        <div class="display: float">
+            <a class="btn btn-danger" href="../index.html">Indietro</a>
+        </div>
+        <br>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
-            // Generate carousel indicators
             $imageDir = '../media/galleria/';
             $images = glob($imageDir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
             foreach ($images as $index => $image) {
@@ -100,7 +100,6 @@
         </ol>
         <div class="carousel-inner">
             <?php
-            // Generate carousel items
             foreach ($images as $index => $image) {
                 echo '<div class="carousel-item';
                 if ($index === 0) {
@@ -125,13 +124,10 @@
     
     <section class="gallery">
         <?php
-        // Display gallery items
         foreach ($images as $index => $image) {
             echo '<div class="gallery-item">';
             echo '<a href="#lightbox-' . $index . '"><img src="' . $image . '" alt="Gallery Image"></a>';
             echo '</div>';
-
-            // Lightbox div
             echo '<div id="lightbox-' . $index . '" class="lightbox">';
             echo '<a href="#" class="lightbox-close">&times;</a>';
             echo '<img src="' . $image . '" alt="Gallery Image">';
@@ -139,8 +135,6 @@
         }
         ?>
     </section>
-
-    <!-- Bootstrap JS (optional) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

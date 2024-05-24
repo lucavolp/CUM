@@ -3311,30 +3311,3 @@ input, select, textarea {
 			}
 
 		}
-
-	.tiles {
-		display: flex;
-		align-items: stretch;
-	}
-	
-	.tiles article {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-	
-	.tiles .image {
-		flex: 1;
-	}
-	
-	.tiles a {
-		text-align: center;
-		display: block;
-		margin-top: auto;
-		padding: 1em;
-		background-color: #f4f4f4;
-	}
-	
-	.tiles h2 {
-		margin: 0;
-	}

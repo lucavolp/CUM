@@ -17,6 +17,9 @@
         echo "Servizio non trovato.";
         exit();
     }
+
+    // Check if user is admin
+    $isAdmin = ($_SESSION['username'] === 'admin');
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +53,13 @@
                             <h4>Luogo: <?php echo $ser['luogo']; ?> </h4>
                         </tbody>
                     </table>
+                    <?php if ($isAdmin): ?>
+                    <!-- Display delete button only for admin -->
+                    <form action="./ws/delete_servizio.php" method="POST">
+                        <input type="hidden" name="id_servizio" value=  "<?php echo $ser['nome']; ?>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <?php endif; ?>
                 </div>
             </div>
             <a type="button" class="btn btn-warning back-button" href="./dashboard.php" name="Indietro" style="position:absolute; left:10px">Indietro</a>

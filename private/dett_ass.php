@@ -11,7 +11,7 @@
     $usernm=$_SESSION['username'];
 
     $id_servizio = $_GET['id'];
-    $sql = "SELECT * FROM Assenze WHERE usr_utente = $usernm";
+    $sql = "SELECT * FROM Assenza WHERE utente_usr = '$usernm'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $ass = $result->fetch_assoc();
@@ -47,7 +47,7 @@
                     <table class="table">
                         <tbody>
                             <h4>Data assenza: <?php echo $ass['data']; ?></h4>
-                            <h4>Dettagli: <?php echo $ser['gettone']; ?> Euro</h4>
+                            <h4>Dettagli: <?php echo $ass['dettagli']; ?></h4>
                         </tbody>
                     </table>
                 </div>

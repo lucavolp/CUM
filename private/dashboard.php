@@ -55,7 +55,7 @@ $logged_in_username = $_SESSION['username'];
                     </div>
                 </div>
             </div>
-            
+    
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -135,7 +135,7 @@ $logged_in_username = $_SESSION['username'];
                             if (nRighe < 5) {
                                 $('#assenze-list').append(
                                     '<li class="list-group-item">' +
-                                        '<a href="dett_com.php?id=' + item.cod + '">' + item.oggetto + '</a>' +
+                                        '<a href="dett_ass.php?id=' + item.cod + '">' + "Assenza n° " +item.id + '</a>' +
                                     '</li>'
                                 );
                                 nRighe++;

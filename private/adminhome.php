@@ -81,6 +81,7 @@ $assen = $conn->query($sql);
 
             <div class="col-md-6">
                 <div class="card">
+<!--
                     <div class="card-body">
                         <h4 class="card-title">Elenco delle comunicazioni</h4>
                         <ul class="list-group">
@@ -104,6 +105,7 @@ $assen = $conn->query($sql);
                             ?>
                         </ul>
                     </div>
+                            -->
                 </div>
             </div>
             
