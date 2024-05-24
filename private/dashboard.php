@@ -41,7 +41,6 @@ $logged_in_username = $_SESSION['username'];
                     <div class="card-body">
                         <h4 class="card-title">Servizi</h4>
                         <ul class="list-group" id="servizi-list">
-                            <!-- I dati verranno inseriti qui tramite JavaScript -->
                         </ul>
                     </div>
                 </div>
@@ -52,7 +51,6 @@ $logged_in_username = $_SESSION['username'];
                     <div class="card-body">
                         <h4 class="card-title">Elenco delle comunicazioni</h4>
                         <ul class="list-group" id="comunicazioni-list">
-                            <!-- I dati verranno inseriti qui tramite JavaScript -->
                         </ul>
                     </div>
                 </div>
@@ -63,7 +61,6 @@ $logged_in_username = $_SESSION['username'];
                     <div class="card-body">
                         <h4 class="card-title">Assenze</h4>
                         <ul class="list-group" id="assenze-list">
-                            <!-- I dati verranno inseriti qui tramite JavaScript -->
                         </ul>
                     </div>
                 </div>
@@ -74,7 +71,6 @@ $logged_in_username = $_SESSION['username'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Carica i servizi
             $.ajax({
                 url: './ws/get_servizi.php',
                 type: 'GET',
@@ -102,7 +98,6 @@ $logged_in_username = $_SESSION['username'];
                 }
             });
 
-            // Carica le comunicazioni
             $.ajax({
                 url: './ws/get_comunicazioni.php',
                 type: 'GET',
@@ -129,7 +124,6 @@ $logged_in_username = $_SESSION['username'];
                 }
             });
 
-            // Carica le assenze
             $.ajax({
                 url: './ws/get_assenze.php',
                 type: 'GET',
