@@ -1,7 +1,3 @@
-dashbord con i dati trasmessi su WebService e non sql diretto
+- cancellazione di servizi con tasto nel dettaglio servizio per l'admin
 
-Pagina Raccolta Fotografica Suddivise per Antiche e Moderne (colonna db "antica" boolean per separarle)
-
-In dashboard.php indentare la visualizzazione delle righe all'interno delle card
-
-addAssenza da fare praticamente tutto !!!!!
+- fare le assenze legate al singolo utente = servizi

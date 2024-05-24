@@ -139,25 +139,85 @@ $assen = $conn->query($sql);
             
             
             $(document).ready(function() {
-                var k = 1;
+
                 
                 $.ajax({
-                    url: '../private/ws/get_servizi.php',
-                    type: 'GET',
-                    success: function(data) {
-                        var servizi = JSON.parse(data);
-                        
-                        $.each(servizi, function(index, item) {
-                            $('#grado').append('<option value="' + k + '">' + item.valore + '</option>');
-                            k++;
+                url: './ws/get_servizi.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.length > 0) {
+                        var nRighe = 0;
+                        $.each(data, function(index, item) {
+                                var edId = item.nome.replace(' ', '_');
+                                $('#servizi-list').append(
+                                    '<li class="list-group-item">' +
+                                        '<a href="dett_ser.php?id=' + edId + '">' + item.nome + '</a>' +
+                                    '</li>'
+                                );
+                                nRighe++;
+                            
                         });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Errore durante la richiesta AJAX:', status, error);
+                    } else {
+                        $('#servizi-list').append('<li class="list-group-item">Nessun servizio svolto</li>');
                     }
-                });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Errore durante la richiesta AJAX:', status, error);
+                }
+            });
                 
+            $.ajax({
+                url: './ws/get_comunicazioni.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.length > 0) {
+                        var nRighe = 0;
+                        $.each(data, function(index, item) {
+                            if (nRighe < 5) {
+                                $('#comunicazioni-list').append(
+                                    '<li class="list-group-item">' +
+                                        '<a href="dett_com.php?id=' + item.cod + '">' + item.oggetto + '</a>' +
+                                    '</li>'
+                                );
+                                nRighe++;
+                            }
+                        });
+                    } else {
+                        $('#comunicazioni-list').append('<li class="list-group-item">Nessuna comunicazione trovata.</li>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Errore durante la richiesta AJAX:', status, error);
+                }
+            });
 
+            $.ajax({
+                url: './ws/get_assenze.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.length > 0) {
+                        var nRighe = 0;
+                        $.each(data, function(index, item) {
+                            if (nRighe < 5) {
+                                $('#assenze-list').append(
+                                    '<li class="list-group-item">' +
+                                        '<a href="dett_com.php?id=' + item.cod + '">' + item.oggetto + '</a>' +
+                                    '</li>'
+                                );
+                                nRighe++;
+                            }
+                        });
+                    } else {
+                        $('#assenze-list').append('<li class="list-group-item">Nessuna assenza segnalata</li>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Errore durante la richiesta AJAX:', status, error);
+                }
+            });
                 
             
             

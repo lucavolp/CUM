@@ -2,9 +2,6 @@
 session_start();
 
 
-    //non so perche le assenze non le filtra bene
-
-
 if (!isset($_SESSION['username'])) {
     header("Location: ../accesso2.html");
     exit();
