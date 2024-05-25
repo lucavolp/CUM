@@ -81,7 +81,6 @@ $assen = $conn->query($sql);
 
             <div class="col-md-6">
                 <div class="card">
-<!--
                     <div class="card-body">
                         <h4 class="card-title">Elenco delle comunicazioni</h4>
                         <ul class="list-group">
@@ -105,7 +104,6 @@ $assen = $conn->query($sql);
                             ?>
                         </ul>
                     </div>
-                            -->
                 </div>
             </div>
             
@@ -120,7 +118,7 @@ $assen = $conn->query($sql);
                                 if ($assen->num_rows > 0) {
                                     $nRighe=0;
                                     while (($row = $assen->fetch_assoc())&&($nRighe<=5)) {
-                                        echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['cod'] . '">' . $row['oggetto'] . '</a></li>';
+                                        echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['id'] . '">' ."Assenza n° ".$row['id'] . '</a></li>';
                                         $nRighe++;
                                     }
                                 } else {

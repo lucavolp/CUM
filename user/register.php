@@ -52,8 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    
-
     $registrazione_result = registerUser($username, $password, $nome, $cognome, $mail, $cellulare, $dataN, $dataA, $grado);
 
     echo json_encode($registrazione_result);
