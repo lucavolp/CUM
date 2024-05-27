@@ -16,6 +16,12 @@ $logged_in_username = $_SESSION['username'];
     <title>Pagina Protetta</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background-image: url('../media/logoSfondo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
         .navbar-brand {
             font-weight: bold;
             font-size: 24px;
@@ -23,6 +29,13 @@ $logged_in_username = $_SESSION['username'];
         .card-title {
             font-weight: bold;
             font-size: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+        }
+        .container {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -106,7 +119,7 @@ $logged_in_username = $_SESSION['username'];
                     if (data.length > 0) {
                         var nRighe = 0;
                         $.each(data, function(index, item) {
-                            if (nRighe < 5) {
+                            if (nRighe < 5) { 
                                 $('#comunicazioni-list').append(
                                     '<li class="list-group-item">' +
                                         '<a href="dett_com.php?id=' + item.cod + '">' + item.oggetto + '</a>' +
@@ -116,7 +129,7 @@ $logged_in_username = $_SESSION['username'];
                             }
                         });
                     } else {
-                        $('#comunicazioni-list').append('<li class="list-group-item">Nessuna comunicazione trovata.</li>');
+                        $('#comunicazioni-list').append('<li class="list-group-item">Nessuna comunicazione trovata</li>');
                     }
                 },
                 error: function(xhr, status, error) {
@@ -135,7 +148,7 @@ $logged_in_username = $_SESSION['username'];
                             if (nRighe < 5) {
                                 $('#assenze-list').append(
                                     '<li class="list-group-item">' +
-                                        '<a href="dett_ass.php?id=' + item.cod + '">' + "Assenza n° " +item.id + '</a>' +
+                                        '<a href="dett_ass.php?id=' + item.cod + '">' + "Assenza n° " + item.id + '</a>' +
                                     '</li>'
                                 );
                                 nRighe++;
