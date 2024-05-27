@@ -26,9 +26,19 @@ $assen = $conn->query($sql);
         <title>Pagina Protetta</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
+            body {
+                background-image: url('../media/sfondoDash.jpeg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
             .navbar-brand {
                 font-weight: bold;
                 font-size: 24px;
+            }
+            .card {
+                background: rgba(255, 255, 255, 0.8); 
+                border-radius: 10px;
             }
             .card-title {
                 font-weight: bold;
@@ -84,9 +94,10 @@ $assen = $conn->query($sql);
                     <div class="card-body">
                         <h4 class="card-title">Elenco delle comunicazioni</h4>
                         <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" id="comunicazioni-list">
                             <a href="./admin/addComunicazione.php">Aggiungi Comunicazione</a></li>
                             <?php
+                            
                                 if ($comun->num_rows > 0) {
                                     $nRighe=0;
                                     while (($row = $comun->fetch_assoc())&&($nRighe<=5)) {
@@ -101,6 +112,7 @@ $assen = $conn->query($sql);
                                 } else {
                                     echo '<li class="list-group-item">Nessuna comunicazione trovata.</li>';
                                 }
+                                
                             ?>
                         </ul>
                     </div>
@@ -118,7 +130,7 @@ $assen = $conn->query($sql);
                                 if ($assen->num_rows > 0) {
                                     $nRighe=0;
                                     while (($row = $assen->fetch_assoc())&&($nRighe<=5)) {
-                                        echo '<li class="list-group-item"><a href="dett_com.php?id=' . $row['id'] . '">' ."Assenza n° ".$row['id'] . '</a></li>';
+                                        echo '<li class="list-group-item"><a href="dett_ass.php?id=' . $row['id'] . '">' ."Assenza n° ".$row['id'] . '</a></li>';
                                         $nRighe++;
                                     }
                                 } else {
@@ -167,7 +179,7 @@ $assen = $conn->query($sql);
                 }
             });
                 
-            $.ajax({
+            $.ajax({/*
                 url: './ws/get_comunicazioni.php',
                 type: 'GET',
                 dataType: 'json',
@@ -181,7 +193,7 @@ $assen = $conn->query($sql);
                                         '<a href="dett_com.php?id=' + item.cod + '">' + item.oggetto + '</a>' +
                                     '</li>'
                                 );
-                                nRighe++;
+                                nRighe++;   
                             }
                         });
                     } else {
@@ -190,7 +202,7 @@ $assen = $conn->query($sql);
                 },
                 error: function(xhr, status, error) {
                     console.error('Errore durante la richiesta AJAX:', status, error);
-                }
+                }*/
             });
 
             $.ajax({
